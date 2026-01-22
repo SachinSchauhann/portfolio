@@ -857,8 +857,9 @@ svg.icon-x {
     .hero-section {
         flex-direction: column;
         text-align: center;
-        padding-top: 120px;
-        gap: 50px;
+        padding-top: 40px;
+        gap: 30px;
+        min-height: auto;
     }
     
     .hero-content {
@@ -885,6 +886,24 @@ svg.icon-x {
 @media (max-width: 768px) {
     .navbar {
         padding: 14px 5%;
+    }
+    
+    .hero-section {
+        padding: 80px 6% 30px;
+        gap: 24px;
+        min-height: auto;
+    }
+    .hero-buttons {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    .stats-row {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .photo-card {
+        width: 260px;
+        height: 340px;
     }
     
     .nav-links {
