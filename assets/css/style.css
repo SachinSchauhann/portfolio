@@ -265,6 +265,18 @@ img {
     color: #ccc;
     margin-bottom: 20px;
     font-weight: 500;
+    min-height: 2.2rem; /* Prevent layout jump */
+}
+
+.cursor {
+    color: var(--primary);
+    animation: blink 0.7s infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .tagline {
@@ -431,8 +443,67 @@ svg.icon-x {
     font-weight: 600;
 }
 
+.personal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.info-item h4 {
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
 /* =========================================
-   8. SKILLS SECTION
+   8. CERTIFICATIONS SECTION
+   ========================================= */
+.certifications-section {
+    padding: 100px 10%;
+}
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.cert-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.cert-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 255, 149, 0.2);
+}
+
+.cert-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.cert-card h3 {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   9. SKILLS SECTION
    ========================================= */
 .skills-section {
     padding: 100px 10%;

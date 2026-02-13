@@ -245,4 +245,43 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power3.out'
     });
 
+    // =========================================
+    // 5. TYPING ANIMATION
+    // =========================================
+    const typedTextElement = document.getElementById('typed-text');
+    const roles = ["Software Engineer", "Software Developer", "Web Developer", "Data Analytics"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    function type() {
+        const currentRole = roles[roleIndex];
+        
+        if (isDeleting) {
+            typedTextElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            typedTextElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 150;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeSpeed = 500; // Pause before starting next word
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    if (typedTextElement) {
+        setTimeout(type, 1000);
+    }
+
 });
