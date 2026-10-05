@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Singh Chauhan | Portfolio OS</title>
+  <meta name="description" content="Portfolio Operating System of Sachin Singh Chauhan - Software Developer, Web Developer, and Data Analytics specialist with built-in Windows apps and browser.">
+  
+  <!-- Windows Fluent & Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       DESKTOP SCREEN
+       ========================================================================== -->
+  <main id="desktop-screen" aria-label="Portfolio OS Desktop">
+    
+    <!-- Desktop Shortcuts (Left Column) -->
+    <section class="desktop-icons-container" id="desktop-shortcuts" aria-label="Desktop Shortcuts">
+      <!-- Shortcuts rendered dynamically by script.js -->
+    </section>
+
+    <!-- ==========================================================================
+         1. FILE EXPLORER WINDOW
+         ========================================================================== -->
+    <div id="explorer-window" class="os-window inactive-window" role="dialog" aria-labelledby="explorer-folder-name">
+      <!-- Title Bar -->
+      <div class="window-titlebar" id="explorer-titlebar">
+        <div class="window-title-left">
+          <span id="explorer-title-icon" aria-hidden="true"></span>
+          <span id="explorer-folder-name">Home - File Explorer</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="win-btn-minimize" title="Minimize" aria-label="Minimize Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="win-btn-maximize" title="Maximize" aria-label="Maximize Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="win-btn-close" title="Close" aria-label="Close Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Windows 11 Command Ribbon -->
+      <div class="explorer-command-bar">
+        <button class="command-bar-btn" onclick="navigateTo('home')">
+          <span>Home</span>
+        </button>
+        <button class="command-bar-btn" onclick="navigateTo('projects')">
+          <span>Projects</span>
+        </button>
+        <button class="command-bar-btn" onclick="navigateTo('certificates')">
+          <span>Certificates</span>
+        </button>
+        <div class="command-bar-divider"></div>
+        <button class="command-bar-btn" onclick="openWindow('overview')">
+          <span>Overview</span>
+        </button>
+        <button class="command-bar-btn" onclick="openInBrowser('https://sachinsinghchauhan.netlify.app/', 'Sachin Portfolio Website')">
+          <span>Edge Browser</span>
+        </button>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="window-toolbar">
+        <div class="nav-buttons-group">
+          <button class="nav-icon-btn" id="nav-btn-back" title="Back (Alt+Left)" aria-label="Back">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="nav-icon-btn" id="nav-btn-forward" title="Forward (Alt+Right)" aria-label="Forward">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="nav-icon-btn" id="nav-btn-up" title="Up to Parent (Backspace)" aria-label="Up">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          </button>
+        </div>
+
+        <!-- Address Bar -->
+        <div class="address-bar-container">
+          <svg class="address-bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <div class="breadcrumbs-list" id="explorer-breadcrumbs">
+            <!-- Breadcrumbs dynamically rendered -->
+          </div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-bar-container">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="explorer-search-input" placeholder="Search portfolio..." aria-label="Search portfolio items">
+        </div>
+
+        <!-- View Toggle -->
+        <div class="view-toggle-group">
+          <button class="view-btn active" id="view-toggle-grid" title="Grid View" aria-label="Switch to Grid View">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" id="view-toggle-list" title="List View" aria-label="Switch to List View">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Window Body -->
+      <div class="window-body">
+        <aside class="window-sidebar" aria-label="Navigation Pane">
+          <div class="sidebar-section-title">Quick Access</div>
+          <ul class="sidebar-nav-list" id="sidebar-quick-access"></ul>
+
+          <div class="sidebar-section-title" style="margin-top: 10px;">Professional</div>
+          <ul class="sidebar-nav-list" id="sidebar-professional"></ul>
+        </aside>
+
+        <section class="window-main-content" id="explorer-main-content" tabindex="0" aria-label="Folder Contents"></section>
+      </div>
+
+      <!-- Status Bar -->
+      <footer class="window-statusbar">
+        <span id="status-bar-items-count">0 items</span>
+        <span id="status-bar-context">Portfolio OS • Ready</span>
+      </footer>
+    </div>
+
+    <!-- ==========================================================================
+         2. IN-OS MICROSOFT EDGE / WEB BROWSER WINDOW
+         ========================================================================== -->
+    <div id="browser-window" class="os-window inactive-window" role="dialog" aria-labelledby="browser-tab-title">
+      <!-- Edge Tab Bar -->
+      <div class="browser-tab-bar" id="browser-titlebar">
+        <div class="browser-tabs-group">
+          <div class="browser-tab">
+            <div class="browser-tab-icon">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#0078D7"/><path d="M12 2C6.48 2 2 6.48 2 12c0 3.2 1.5 6.06 3.84 7.89 1.15-2.84 3.75-4.89 6.86-5.26 3.32-.4 6.27 1.25 7.6 4.02C21.36 16.89 22 14.54 22 12c0-5.52-4.48-10-10-10z" fill="#00C853"/></svg>
+            </div>
+            <span class="browser-tab-title" id="browser-tab-title">Microsoft Edge</span>
+            <button class="browser-tab-close" id="browser-tab-close-btn" title="Close Tab" onclick="closeWindow('browser')">✕</button>
+          </div>
+        </div>
+
+        <div class="window-controls">
+          <button class="win-btn" id="browser-win-minimize" title="Minimize" aria-label="Minimize Browser">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="browser-win-maximize" title="Maximize" aria-label="Maximize Browser">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="browser-win-close" title="Close" aria-label="Close Browser">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Browser Navigation & URL Toolbar -->
+      <div class="browser-toolbar">
+        <button class="browser-nav-btn" title="Reload (F5)" id="browser-btn-reload" aria-label="Reload Page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </button>
+
+        <div class="browser-url-bar">
+          <svg class="browser-url-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input type="text" class="browser-url-input" id="browser-url-input" placeholder="https://..." readonly aria-label="Web Address">
+        </div>
+
+        <button class="browser-action-btn" id="browser-btn-copy-url" title="Copy URL">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy</span>
+        </button>
+
+        <button class="browser-action-btn" id="browser-btn-external" title="Open in New Real Browser Tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>External Tab</span>
+        </button>
+      </div>
+
+      <!-- Browser Viewport & Iframe -->
+      <div class="browser-viewport">
+        <div class="browser-loading-bar" id="browser-loading-bar"></div>
+        <iframe class="browser-iframe" id="browser-iframe" src="about:blank" title="In-OS Web Browser Viewport"></iframe>
+        
+        <!-- Fallback Banner in case an external service restricts embedding -->
+        <div class="browser-fallback-card" id="browser-fallback-card">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0067C5" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <h3 style="font-size: 16px; font-weight: 700;">Document Ready</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); max-width: 440px;">If this document blocks nested iframe viewing or requires Google authentication, click below to open directly in a new tab:</p>
+          <button class="btn-primary" id="browser-fallback-open-btn">
+            ↗ Open in External Tab
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         3. PORTFOLIO OVERVIEW APP WINDOW (The Hero Screenshot Card)
+         ========================================================================== -->
+    <div id="overview-window" class="os-window inactive-window" role="dialog" aria-labelledby="overview-folder-name">
+      <div class="window-titlebar" id="overview-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 16px;">👤</span>
+          <span id="overview-folder-name">Portfolio Overview - Sachin Singh Chauhan</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="overview-win-minimize" title="Minimize" aria-label="Minimize Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="overview-win-maximize" title="Maximize" aria-label="Maximize Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="overview-win-close" title="Close" aria-label="Close Window">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="overview-body">
+        <div class="hero-header-badge">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          PORTFOLIO OPERATING SYSTEM • SYSTEM ONLINE
+        </div>
+
+        <div class="hero-main-content">
+          <div class="hero-text-block">
+            <h1 class="hero-title">Sachin Singh Chauhan</h1>
+            <div class="hero-roles">
+              <span>Software Developer</span>
+              <span class="separator">•</span>
+              <span>Web Developer</span>
+              <span class="separator">•</span>
+              <span>Data Analytics</span>
+            </div>
+            <p class="hero-description">
+              Entry-level developer focused on programming, analytical thinking and problem solving, with an interest in building scalable software and web solutions.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn-primary" id="hero-btn-open-portfolio" aria-label="Open File Explorer" onclick="closeWindow('overview'); navigateTo('home');">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                OPEN PORTFOLIO
+              </button>
+              <button class="btn-secondary" id="hero-btn-view-projects" aria-label="View Projects Folder" onclick="closeWindow('overview'); navigateTo('projects');">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                VIEW PROJECTS
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Profile Card -->
+          <aside class="hero-profile-avatar-card">
+            <div class="hero-avatar-wrapper">
+              <img src="Sachin.png" alt="Sachin Singh Chauhan" onerror="this.onerror=null; this.src='sachin.png';">
+            </div>
+            <h2 class="hero-avatar-name">Sachin Singh Chauhan</h2>
+            <div class="hero-avatar-role">Software Developer</div>
+            <div class="hero-avatar-loc">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <a href="https://maps.app.goo.gl/1pf18Kq7DPNjkEBc6" target="_blank" rel="noopener noreferrer" title="View Location on Google Maps">Matiyari, Lucknow, UP</a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Quick navigation shortcuts -->
+        <div class="hero-quick-pills">
+          <button class="quick-pill" onclick="closeWindow('overview'); navigateTo('skills');">💻 Technical Skills</button>
+          <button class="quick-pill" onclick="closeWindow('overview'); navigateTo('certificates');">📜 Verified Certificates</button>
+          <button class="quick-pill" onclick="closeWindow('overview'); navigateTo('experience');">💼 Experience & Internships</button>
+          <button class="quick-pill" onclick="closeWindow('overview'); openInBrowser('https://sachinsinghchauhan.netlify.app/', 'Sachin Portfolio Website');">🌐 Live Web Portfolio</button>
+          <button class="quick-pill" onclick="closeWindow('overview'); navigateTo('contact');">📞 Contact & WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         4. CALCULATOR APP WINDOW
+         ========================================================================== -->
+    <div id="calc-window" class="os-window inactive-window" role="dialog" aria-labelledby="calc-title">
+      <div class="window-titlebar" id="calc-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">🧮</span>
+          <span id="calc-title">Calculator</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="calc-win-minimize" title="Minimize" aria-label="Minimize Calculator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="calc-win-maximize" title="Maximize" aria-label="Maximize Calculator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="calc-win-close" title="Close" aria-label="Close Calculator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="calc-body">
+        <div class="calc-display">
+          <div class="calc-history" id="calc-history"></div>
+          <div class="calc-result" id="calc-result">0</div>
+        </div>
+        <div class="calc-grid">
+          <button class="calc-btn op" data-action="clear">C</button>
+          <button class="calc-btn op" data-action="ce">CE</button>
+          <button class="calc-btn op" data-action="backspace">⌫</button>
+          <button class="calc-btn op" data-op="÷">÷</button>
+
+          <button class="calc-btn" data-num="7">7</button>
+          <button class="calc-btn" data-num="8">8</button>
+          <button class="calc-btn" data-num="9">9</button>
+          <button class="calc-btn op" data-op="×">×</button>
+
+          <button class="calc-btn" data-num="4">4</button>
+          <button class="calc-btn" data-num="5">5</button>
+          <button class="calc-btn" data-num="6">6</button>
+          <button class="calc-btn op" data-op="-">-</button>
+
+          <button class="calc-btn" data-num="1">1</button>
+          <button class="calc-btn" data-num="2">2</button>
+          <button class="calc-btn" data-num="3">3</button>
+          <button class="calc-btn op" data-op="+">+</button>
+
+          <button class="calc-btn op" data-action="negate">±</button>
+          <button class="calc-btn" data-num="0">0</button>
+          <button class="calc-btn" data-action="decimal">.</button>
+          <button class="calc-btn equals" data-action="equals">=</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         5. PHOTOS / GALLERY APP WINDOW
+         ========================================================================== -->
+    <div id="gallery-window" class="os-window inactive-window" role="dialog" aria-labelledby="gallery-title">
+      <div class="window-titlebar" id="gallery-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">🖼️</span>
+          <span id="gallery-title">Photos - Sachin's Portfolio Gallery</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="gallery-win-minimize" title="Minimize" aria-label="Minimize Photos">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="gallery-win-maximize" title="Maximize" aria-label="Maximize Photos">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="gallery-win-close" title="Close" aria-label="Close Photos">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-body">
+        <div class="gallery-viewer">
+          <button class="gallery-nav-arrow left" id="gallery-prev-btn" title="Previous Image" aria-label="Previous Image">‹</button>
+          <img class="gallery-main-img" id="gallery-main-img" src="Sachin.png" alt="Gallery Photo Preview">
+          <button class="gallery-nav-arrow right" id="gallery-next-btn" title="Next Image" aria-label="Next Image">›</button>
+        </div>
+        <div class="gallery-info-bar">
+          <span id="gallery-img-title" style="font-weight:600;">Sachin Singh Chauhan - Profile</span>
+          <span id="gallery-img-counter" style="color:var(--text-light);">1 / 8</span>
+        </div>
+        <div class="gallery-thumbnails-strip" id="gallery-thumbnails-strip">
+          <!-- Dynamically filled with thumbnails -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         6. NOTEPAD APP WINDOW
+         ========================================================================== -->
+    <div id="notepad-window" class="os-window inactive-window" role="dialog" aria-labelledby="notepad-title">
+      <div class="window-titlebar" id="notepad-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">📝</span>
+          <span id="notepad-title">ReadMe_Portfolio.txt - Notepad</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="notepad-win-minimize" title="Minimize" aria-label="Minimize Notepad">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="notepad-win-maximize" title="Maximize" aria-label="Maximize Notepad">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="notepad-win-close" title="Close" aria-label="Close Notepad">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="notepad-menu-bar">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+      </div>
+
+      <div class="notepad-body">
+        <textarea class="notepad-textarea" id="notepad-textarea" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         7. SETTINGS WINDOW (Themes, Wallpapers, Fonts, Accent Colors)
+         ========================================================================== -->
+    <div id="settings-window" class="os-window inactive-window" role="dialog" aria-labelledby="settings-title">
+      <div class="window-titlebar" id="settings-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">⚙️</span>
+          <span id="settings-title">Settings - Personalization & Themes</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="settings-win-minimize" title="Minimize" aria-label="Minimize Settings">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="settings-win-maximize" title="Maximize" aria-label="Maximize Settings">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="settings-win-close" title="Close" aria-label="Close Settings">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="settings-body">
+        <aside class="settings-sidebar">
+          <div class="settings-nav-btn active" id="settings-nav-personalization" onclick="showSettingsTab('personalization')">
+            <span>🎨</span>
+            <span>Personalization</span>
+          </div>
+          <div class="settings-nav-btn" id="settings-nav-about" onclick="showSettingsTab('about')">
+            <span>ℹ️</span>
+            <span>System & About</span>
+          </div>
+        </aside>
+
+        <section class="settings-content">
+          <!-- Personalization Tab -->
+          <div id="settings-tab-personalization" class="settings-tab-pane">
+            
+            <!-- 1. Theme Mode -->
+            <div class="settings-group">
+              <h3 class="settings-group-title">
+                <span>🌓</span> Theme Mode
+              </h3>
+              <p class="settings-group-desc">Switch between light and dark modes across the operating system</p>
+              <div class="theme-mode-selector">
+                <div class="theme-mode-card active" id="theme-card-light" data-theme-val="light" onclick="setTheme('light')">
+                  <div class="theme-mode-preview">☀️</div>
+                  <div style="font-size:12px; font-weight:600;">Light Mode</div>
+                </div>
+                <div class="theme-mode-card" id="theme-card-dark" data-theme-val="dark" onclick="setTheme('dark')">
+                  <div class="theme-mode-preview">🌙</div>
+                  <div style="font-size:12px; font-weight:600;">Dark Mode</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Wallpapers -->
+            <div class="settings-group" style="margin-top: 18px;">
+              <h3 class="settings-group-title">
+                <span>🖼️</span> Desktop Wallpaper
+              </h3>
+              <p class="settings-group-desc">Choose an authentic background for your Windows 11 desktop</p>
+              <div class="wallpaper-grid">
+                <div class="wallpaper-card active" data-wp="wallpaper-bloom-light" onclick="setWallpaper('wallpaper-bloom-light')">
+                  <div class="wallpaper-card-preview wallpaper-bloom-light"></div>
+                  <div class="wallpaper-card-label">Bloom Light</div>
+                </div>
+                <div class="wallpaper-card" data-wp="wallpaper-bloom-dark" onclick="setWallpaper('wallpaper-bloom-dark')">
+                  <div class="wallpaper-card-preview wallpaper-bloom-dark"></div>
+                  <div class="wallpaper-card-label">Bloom Dark</div>
+                </div>
+                <div class="wallpaper-card" data-wp="wallpaper-cyberpunk" onclick="setWallpaper('wallpaper-cyberpunk')">
+                  <div class="wallpaper-card-preview wallpaper-cyberpunk"></div>
+                  <div class="wallpaper-card-label">Cyberpunk</div>
+                </div>
+                <div class="wallpaper-card" data-wp="wallpaper-sunset" onclick="setWallpaper('wallpaper-sunset')">
+                  <div class="wallpaper-card-preview wallpaper-sunset"></div>
+                  <div class="wallpaper-card-label">Sunset Glow</div>
+                </div>
+                <div class="wallpaper-card" data-wp="wallpaper-ocean" onclick="setWallpaper('wallpaper-ocean')">
+                  <div class="wallpaper-card-preview wallpaper-ocean"></div>
+                  <div class="wallpaper-card-label">Deep Ocean</div>
+                </div>
+                <div class="wallpaper-card" data-wp="wallpaper-nature" onclick="setWallpaper('wallpaper-nature')">
+                  <div class="wallpaper-card-preview wallpaper-nature"></div>
+                  <div class="wallpaper-card-label">Emerald Nature</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Accent Color -->
+            <div class="settings-group" style="margin-top: 18px;">
+              <h3 class="settings-group-title">
+                <span>🎨</span> Accent Color
+              </h3>
+              <p class="settings-group-desc">Choose a primary accent color for buttons, selections, and taskbar indicators</p>
+              <div class="accent-colors-list">
+                <button class="accent-color-btn active" style="background:#0078D4;" title="Windows Blue" onclick="setAccentColor('#0078D4')"></button>
+                <button class="accent-color-btn" style="background:#8B5CF6;" title="Electric Purple" onclick="setAccentColor('#8B5CF6')"></button>
+                <button class="accent-color-btn" style="background:#10B981;" title="Emerald Green" onclick="setAccentColor('#10B981')"></button>
+                <button class="accent-color-btn" style="background:#EC4899;" title="Cyberpunk Pink" onclick="setAccentColor('#EC4899')"></button>
+                <button class="accent-color-btn" style="background:#F59E0B;" title="Amber Gold" onclick="setAccentColor('#F59E0B')"></button>
+                <button class="accent-color-btn" style="background:#EF4444;" title="Crimson Red" onclick="setAccentColor('#EF4444')"></button>
+              </div>
+            </div>
+
+            <!-- 4. Typography / Fonts -->
+            <div class="settings-group" style="margin-top: 18px;">
+              <h3 class="settings-group-title">
+                <span>🔤</span> System Typography (Font)
+              </h3>
+              <p class="settings-group-desc">Change the active typography across the interface</p>
+              <div class="font-chooser-list">
+                <button class="font-choice-btn active" style="font-family:'Plus Jakarta Sans', sans-serif;" onclick="setFont('Plus Jakarta Sans')">Plus Jakarta Sans (Default)</button>
+                <button class="font-choice-btn" style="font-family:'Inter', sans-serif;" onclick="setFont('Inter')">Inter (Modern Clean)</button>
+                <button class="font-choice-btn" style="font-family:'Outfit', sans-serif;" onclick="setFont('Outfit')">Outfit (Geometric)</button>
+                <button class="font-choice-btn" style="font-family:'JetBrains Mono', monospace;" onclick="setFont('JetBrains Mono')">JetBrains Mono (Hacker)</button>
+                <button class="font-choice-btn" style="font-family:'Segoe UI', sans-serif;" onclick="setFont('Segoe UI')">Segoe UI (Classic)</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- About Tab -->
+          <div id="settings-tab-about" class="settings-tab-pane" style="display:none;">
+            <div class="settings-group">
+              <h3 class="settings-group-title">
+                <span>💻</span> About This Operating System
+              </h3>
+              <div style="background:var(--surface-card); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:18px; display:flex; flex-direction:column; gap:12px; font-size:13px;">
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+                  <strong>System:</strong>
+                  <span style="color:var(--win-blue); font-weight:600;">Portfolio OS 2.0 (Windows 11 Edition)</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+                  <strong>Author / Developer:</strong>
+                  <span>Sachin Singh Chauhan</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+                  <strong>Specialization:</strong>
+                  <span>Software Developer | Web Developer | Data Analytics</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+                  <strong>Location:</strong>
+                  <span>Matiyari, Lucknow, Uttar Pradesh</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <strong>Architecture:</strong>
+                  <span>HTML5 • Vanilla CSS (Fluent Mica) • Vanilla JavaScript ES6+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         8. SNAKE GAME WINDOW (Classic Arcade)
+         ========================================================================== -->
+    <div id="snake-window" class="os-window inactive-window" role="dialog" aria-labelledby="snake-title">
+      <div class="window-titlebar" id="snake-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">🐍</span>
+          <span id="snake-title">Snake Game - Retro Windows Arcade</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="snake-win-minimize" title="Minimize" aria-label="Minimize Snake">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="snake-win-maximize" title="Maximize" aria-label="Maximize Snake">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="snake-win-close" title="Close" aria-label="Close Snake">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="game-window-body">
+        <div class="game-header-bar">
+          <div>Score: <span id="snake-score" style="color:#10B981; font-weight:700;">0</span></div>
+          <div>High Score: <span id="snake-high-score" style="color:#F59E0B; font-weight:700;">0</span></div>
+        </div>
+
+        <canvas id="snake-canvas" class="game-canvas" width="360" height="300"></canvas>
+
+        <div class="game-controls-bar">
+          <button class="game-action-btn" id="snake-btn-start">Start Game</button>
+          <button class="game-action-btn" style="background:#374151;" id="snake-btn-restart">Restart</button>
+        </div>
+
+        <!-- Touch / On-screen D-pad for easy playing -->
+        <div class="d-pad-container">
+          <div></div>
+          <button class="d-btn" id="dpad-up" aria-label="Up">▲</button>
+          <div></div>
+          <button class="d-btn" id="dpad-left" aria-label="Left">◀</button>
+          <button class="d-btn" id="dpad-down" aria-label="Down">▼</button>
+          <button class="d-btn" id="dpad-right" aria-label="Right">▶</button>
+        </div>
+        <div style="font-size:11px; color:#9CA3AF; margin-top:2px;">Use Arrow keys or WASD to navigate</div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         9. DX-BALL / BRICK BREAKER GAME WINDOW
+         ========================================================================== -->
+    <div id="ball-window" class="os-window inactive-window" role="dialog" aria-labelledby="ball-title">
+      <div class="window-titlebar" id="ball-titlebar">
+        <div class="window-title-left">
+          <span style="font-size: 15px;">🎾</span>
+          <span id="ball-title">DX-Ball - Brick Breaker Arcade</span>
+        </div>
+        <div class="window-controls">
+          <button class="win-btn" id="ball-win-minimize" title="Minimize" aria-label="Minimize DX-Ball">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="win-btn" id="ball-win-maximize" title="Maximize" aria-label="Maximize DX-Ball">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          </button>
+          <button class="win-btn close" id="ball-win-close" title="Close" aria-label="Close DX-Ball">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="game-window-body">
+        <div class="game-header-bar">
+          <div>Score: <span id="ball-score" style="color:#38BDF8; font-weight:700;">0</span></div>
+          <div>Lives: <span id="ball-lives" style="color:#F43F5E;">❤️❤️❤️</span></div>
+          <div>Level: <span id="ball-level" style="color:#A78BFA; font-weight:700;">1</span></div>
+        </div>
+
+        <canvas id="ball-canvas" class="game-canvas" width="420" height="300"></canvas>
+
+        <div class="game-controls-bar">
+          <button class="game-action-btn" id="ball-btn-start">Start Game</button>
+          <button class="game-action-btn" style="background:#374151;" id="ball-btn-restart">Restart</button>
+        </div>
+        <div style="font-size:11px; color:#9CA3AF; margin-top:2px;">Move mouse or use ← / → Arrow Keys to move paddle</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       CALENDAR & NOTIFICATION FLYOUT (Taskbar Clock Click)
+       ========================================================================== -->
+  <aside id="calendar-flyout" role="dialog" aria-label="Date and Time Flyout" aria-hidden="true">
+    <div class="flyout-time-header">
+      <div class="flyout-clock-seconds" id="flyout-clock-val">12:00:00 PM</div>
+      <div class="flyout-date-full" id="flyout-date-val">Monday, October 5, 2026</div>
+    </div>
+
+    <div class="calendar-widget">
+      <div class="calendar-month-nav">
+        <span class="calendar-month-title" id="calendar-month-title">October 2026</span>
+        <div style="display:flex; gap:4px;">
+          <button class="cal-nav-btn" id="cal-prev-month" title="Previous Month" aria-label="Previous Month">‹</button>
+          <button class="cal-nav-btn" id="cal-next-month" title="Next Month" aria-label="Next Month">›</button>
+        </div>
+      </div>
+
+      <div class="calendar-days-grid" id="calendar-days-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <div class="flyout-status-card">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="width:8px; height:8px; border-radius:50%; background:#10B981; display:inline-block;"></span>
+        <span style="font-weight:600; color:var(--dark-text);">Portfolio OS Status</span>
+      </div>
+      <span style="color:var(--win-blue); font-weight:600;">System Online</span>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       WINDOWS 11 TASKBAR (Bottom Centered Dock)
+       ========================================================================== -->
+  <footer id="taskbar" aria-label="System Taskbar">
+    
+    <!-- Left Widget / Weather -->
+    <div class="taskbar-left-group">
+      <div class="taskbar-widget-btn" title="Weather & System Widget">
+        <span style="font-size: 15px;">⛅</span>
+        <span>28°C Lucknow</span>
+      </div>
+    </div>
+
+    <!-- Center Taskbar Apps (Windows 11 Centered Dock) -->
+    <div class="taskbar-center-group">
+      <!-- Windows 11 Start Button -->
+      <button class="taskbar-item-btn taskbar-start-btn" id="taskbar-start-btn" title="Start" aria-label="Open Start Menu">
+        <svg viewBox="0 0 24 24" width="22" height="22">
+          <path fill="#0078D4" d="M2.5 2.5h8.8v8.8H2.5zm10.2 0h8.8v8.8h-8.8zM2.5 12.7h8.8v8.8H2.5zm10.2 0h8.8v8.8h-8.8z"/>
+        </svg>
+      </button>
+
+      <!-- Taskbar Search Button -->
+      <button class="taskbar-item-btn taskbar-search-btn" id="taskbar-search-btn" title="Search" onclick="navigateTo('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+
+      <!-- Overview App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-overview" title="Portfolio Overview (Hero Card)" aria-label="Toggle Portfolio Overview Window">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Overview</span>
+      </button>
+
+      <!-- File Explorer App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-explorer" title="File Explorer" aria-label="Toggle File Explorer Window">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" fill="#FFC83B" stroke="#D99B00" stroke-width="1.25"/>
+        </svg>
+        <span>Explorer</span>
+      </button>
+
+      <!-- Microsoft Edge In-OS Browser App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-edge" title="Microsoft Edge (In-OS Browser)" aria-label="Toggle Microsoft Edge Browser Window">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" fill="#0078D7"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 3.2 1.5 6.06 3.84 7.89 1.15-2.84 3.75-4.89 6.86-5.26 3.32-.4 6.27 1.25 7.6 4.02C21.36 16.89 22 14.54 22 12c0-5.52-4.48-10-10-10z" fill="#00C853"/>
+        </svg>
+        <span>Edge</span>
+      </button>
+
+      <!-- Photos / Gallery App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-gallery" title="Photos / Gallery" aria-label="Toggle Photos App">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="18" height="18" rx="3" fill="#0078D4"/>
+          <circle cx="8.5" cy="8.5" r="2" fill="#FFFFFF"/>
+          <path d="M21 16l-5-5-8 8h13v-3z" fill="#FFFFFF" opacity="0.8"/>
+        </svg>
+        <span>Photos</span>
+      </button>
+
+      <!-- Calculator App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-calc" title="Calculator" aria-label="Toggle Calculator App">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="2" width="16" height="20" rx="3" fill="#2563EB"/>
+          <rect x="7" y="5" width="10" height="4" rx="1" fill="#FFFFFF"/>
+          <circle cx="8" cy="12" r="1" fill="#FFFFFF"/>
+          <circle cx="12" cy="12" r="1" fill="#FFFFFF"/>
+          <circle cx="16" cy="12" r="1" fill="#FFFFFF"/>
+          <circle cx="8" cy="16" r="1" fill="#FFFFFF"/>
+          <circle cx="12" cy="16" r="1" fill="#FFFFFF"/>
+          <circle cx="16" cy="16" r="1" fill="#FFFFFF"/>
+        </svg>
+        <span>Calculator</span>
+      </button>
+
+      <!-- Notepad App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-notepad" title="Notepad" aria-label="Toggle Notepad App">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="2" width="16" height="20" rx="2" fill="#0EA5E9"/>
+          <line x1="8" y1="7" x2="16" y2="7" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="8" y1="11" x2="16" y2="11" stroke="#FFFFFF" stroke-width="1.5"/>
+          <line x1="8" y1="15" x2="13" y2="15" stroke="#FFFFFF" stroke-width="1.5"/>
+        </svg>
+        <span>Notepad</span>
+      </button>
+
+      <!-- Settings App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-settings" title="Settings (Themes & Wallpapers)" aria-label="Toggle Settings App">
+        <span style="font-size: 16px;">⚙️</span>
+        <span>Settings</span>
+      </button>
+
+      <!-- Snake Game App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-snake" title="Snake Game" aria-label="Toggle Snake Game">
+        <span style="font-size: 16px;">🐍</span>
+        <span>Snake</span>
+      </button>
+
+      <!-- DX-Ball Game App Button -->
+      <button class="taskbar-item-btn" id="taskbar-btn-ball" title="DX-Ball Game" aria-label="Toggle DX-Ball Game">
+        <span style="font-size: 16px;">🎾</span>
+        <span>DX-Ball</span>
+      </button>
+    </div>
+
+    <!-- Right System Tray & Clock -->
+    <div class="taskbar-tray">
+      <div class="tray-status-cluster" title="Network, Sound & Battery">
+        <!-- Wifi -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        <!-- Sound -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <!-- Battery -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2" ry="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+      </div>
+
+      <!-- Taskbar Clock & Date Trigger (Click opens Calendar Flyout with seconds) -->
+      <div class="taskbar-clock-area" id="system-clock" title="System Time & Date (Click to open Calendar)" role="button" tabindex="0">
+        <span class="clock-time" id="clock-time-val">12:00 PM</span>
+        <span class="clock-date" id="clock-date-val">10/05/2026</span>
+      </div>
+
+      <div class="desktop-peek-line" title="Show Desktop" onclick="minimizeAllWindows()"></div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       WINDOWS 11 START MENU
+       ========================================================================== -->
+  <div id="start-menu" role="dialog" aria-label="Start Menu" aria-hidden="true">
+    <div class="start-search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Type here to search..." onfocus="navigateTo('home'); toggleStartMenu();">
+    </div>
+
+    <div>
+      <div class="sidebar-section-title" style="padding-left: 2px;">Pinned Applications & Folders</div>
+      <div class="start-pinned-grid" id="start-pinned-grid"></div>
+    </div>
+
+    <div class="start-menu-footer">
+      <div class="start-user-bar">
+        <div class="start-avatar-mini">
+          <img src="Sachin.png" alt="Sachin Singh Chauhan" onerror="this.onerror=null; this.src='sachin.png';">
+        </div>
+        <div class="start-user-info">
+          <h4>Sachin Singh Chauhan</h4>
+          <p>Software Developer | Lucknow</p>
+        </div>
+      </div>
+      <button id="start-btn-about" class="btn-secondary" style="font-size: 11px; padding: 5px 10px;">About OS</button>
+    </div>
+  </div>
+
+  <!-- External JavaScript Core -->
+  <script src="script.js"></script>
+</body>
+</html>
